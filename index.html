@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Dosen</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+
+    .main-container {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .header {
+      background-color: #dceeff;
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .profile-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #ccc url('https://via.placeholder.com/100') no-repeat center/cover;
+      border: 3px solid white;
+    }
+
+    .user-info h4,
+    .user-info h5 {
+      margin: 0;
+    }
+
+    .dashboard-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .feature-container {
+      flex: 1;
+      overflow-y: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .feature-item {
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .feature-icon {
+      width: 110px;
+      height: 110px;
+      background-color: #007bff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 10px;
+      overflow: hidden;
+      border: 3px solid #fff;
+    }
+
+    .feature-icon img {
+      width: 70%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .feature-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    @media (min-height: 800px) {
+      .feature-icon {
+        width: 140px;
+        height: 140px;
+      }
+
+      .feature-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <div class="dashboard-title">Dashboard Dosen</div>
+
+    <div class="header">
+      <div class="profile-img"></div>
+      <div class="user-info">
+        <h4>Ledyvia Audiz, S.Kom</h4>
+        <h5>Aljabar Linear</h5>
+      </div>
+    </div>
+
+    <div class="feature-container">
+      <div class="row g-4">
+        <div class="col-sm-6 col-md-4 feature-item" id="mahasiswa-menu">
+          <div class="feature-icon">
+            <img src="kelas.png" alt="Mahasiswa Icon">
+          </div>
+          <div class="feature-title">Mahasiswa</div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 feature-item">
+          <div class="feature-icon">
+            <img src="quiz.png" alt="Quiz Icon">
+          </div>
+          <div class="feature-title">Quiz</div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 feature-item">
+          <div class="feature-icon">
+            <img src="materi.png" alt="Materi Icon">
+          </div>
+          <div class="feature-title">Materi</div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 feature-item">
+          <div class="feature-icon">
+            <img src="jadwal.png" alt="Jadwal Icon">
+          </div>
+          <div class="feature-title">Jadwal</div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 feature-item">
+          <div class="feature-icon">
+            <img src="tugas.png" alt="Tugas Icon">
+          </div>
+          <div class="feature-title">Tugas</div>
+        </div>
+
+        <div class="col-sm-6 col-md-4 feature-item">
+          <div class="feature-icon">
+            <img src="pengunguman.png" alt="Pengumuman Icon">
+          </div>
+          <div class="feature-title">Pengumuman</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const featureItems = document.querySelectorAll('.feature-item');
+      const pages = {
+        'Mahasiswa': 'kelas-dosen.html',
+        'Quiz': 'quiz-dosen.html',
+        'Materi': 'materi-dosen.html',
+        'Jadwal': 'jadwal-dosen.html',
+        'Tugas': 'tugas-dosen.html',
+        'Pengumuman': 'pengunguman-dosen.html'
+      };
+
+      featureItems.forEach(item => {
+        item.addEventListener('click', function () {
+          const featureTitle = this.querySelector('.feature-title').textContent.trim();
+          if (pages[featureTitle]) {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+              this.style.transform = 'scale(1)';
+              window.location.href = pages[featureTitle];
+            }, 200);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
